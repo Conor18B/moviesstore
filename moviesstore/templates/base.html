@@ -44,6 +44,9 @@
                href="{% url 'home.about' %}">About</a>
             <a class="nav-link" href=
               "{% url 'movies.index' %}">Movies</a>
+              {% if user.is_staff%}
+              <a class="nav-link" href="{%url 'movies.reports' %}">Admin Dashboard</a>
+              {% endif %}
             <a class="nav-link"
               href="{% url 'cart.index' %}">Cart</a>
              <div class="vr bg-white mx-2 d-none
