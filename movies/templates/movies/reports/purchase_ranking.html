@@ -1,0 +1,63 @@
+{%extends 'base.html' %}
+{% block content %}
+<div class="p-4">
+    <h2>User Ranked by Purchases</h2>
+    <a href="{% url 'movies.reports'%}">Back to dashboard</a>
+    <form method="get" class="my-3">
+        <label for="limit">
+            Number of users (blank shows all)
+        </label>
+
+        <input
+        type="number"
+        id="limit"
+        name="limit"
+        min="1"
+        step="1"
+        value="{{template_data.limit}}"
+        class="form-control mb-2"
+        >
+
+        <button type="submit" class="btn-primary">
+            Apply
+        </button>
+
+        <a href="{% url 'movies.purchase_ranking' %}"
+            class = "btn btn-secondary">
+        Show all
+    </a>
+    </form>
+
+    {% if template_data.error%}
+    <p class="text-danger" role="alert">
+        {{template_data.error}}
+    </p>
+    {% endif %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>User</th>
+                <th>Movies purchased</th>
+                </tr>
+        </thead>
+          
+        <tbody>
+            {% for person in template_data.users %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ person.username}}</td>
+                <td>{{person.purchase_count}}</td>
+            </tr>
+            {% empty %}
+
+        <tr>
+            <td colspan="3">No users found</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+  </div>
+{% endblock content %}
