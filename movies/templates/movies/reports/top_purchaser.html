@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container py-4">
+    <h2> User with Most Purchases</h2>
+
+    <a href = "{% url 'movies.reports' %}">Back to dashboard</a>
+
+ <table class="table mt-3">
+  <thead>
+    <tr><th>User</th><th>Movies purchased</th></tr>
+  </thead>
+  <tbody>
+    {% for person in template_data.leaders %}
+    <tr>
+     <td>{{ person.username }}</td>
+     <td>{{ person.purchase_count }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">No purchases yet.</td></tr>
+    {% endfor %}
+  </tbody>
+ </table>
+</div>
+{% endblock content %}
