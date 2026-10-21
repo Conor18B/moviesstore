@@ -3,6 +3,7 @@ from . import views
 from .reporting.dashboard import dashboard
 from .reporting.top_purchaser import top_purchaser
 from .reporting.purchase_ranking import purchase_ranking 
+from .reporting.top_commenter import top_commenter
 
 urlpatterns = [
     path('', views.index, name='movies.index'),
@@ -26,7 +27,12 @@ urlpatterns = [
         top_purchaser,
         name="movies.top_purchaser",
     ),
-    
-        
+    path(
+        "reports/top-commenter/",
+        top_commenter,
+        name="movies.top_commenter",
+    ),
+   
+   
 
 ]
