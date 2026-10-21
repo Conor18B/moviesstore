@@ -3,6 +3,8 @@ from . import views
 from .reporting.dashboard import dashboard
 from .reporting.top_commenter import top_commenter
 from .reporting.purchase_ranking import purchase_ranking
+from .reporting.top_movies import top_movies
+
 urlpatterns = [
     path('', views.index, name='movies.index'),
     path('<int:id>/', views.show, name='movies.show'),
@@ -15,6 +17,8 @@ urlpatterns = [
     path('<int:id>/review/<int:review_id>/report/',
         views.report_review, name='movies.report_review'),
     path("reports/", dashboard, name="movies.reports"),
-    path("reports/", purchase_ranking, name="movies.purchase_ranking"),
+    path("reports/purchase-ranking/", purchase_ranking,
+         name="movies.purchase_ranking"),
     path("reports/top_commenter/", top_commenter, name="movies.top_commenter"),
+    path("reports/top-movies/", top_movies, name="movies.top_movies")
 ]

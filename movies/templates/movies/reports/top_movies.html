@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4">
+    <h2> {{ template_data.title }}</h2>
+
+    <a href="{% url 'movies.reports' %}">
+        Back to dashboard
+    </a>
+
+    <h3 class="mt-4">Most Purchased</h3>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Times purchased</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for movie in template_data.purchase_leaders %}
+        <tr>
+            <td>{{ movie.name }}</td>
+            <td>{{ movie.purchase_count }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">No purchases yet.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="mt-4">Most Reviewed</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Reviews posted</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for movie in template_data.review_leaders %}
+        <tr>
+            <td>{{ movie.name }}</td>
+            <td>{{ movie.review_count }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">No reviews yet.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
